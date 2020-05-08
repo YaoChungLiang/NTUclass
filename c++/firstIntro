@@ -1,0 +1,170 @@
+First round 
+
+pogress oriented - c
+object oriented - c++, JAVA
+function oriented - JS
+---
+online c++ compiler (c++ 17)
+coliru
+---
+solid design principles:
+1. what the question is?
+2. How to design is better?
+
+push-back vs emplace-back
+unique ptr
+c++ vector cannot store reference but can store pointer
+---
+const = 0  don't implement  ===>  make it be able to be inhereit
+const      forgot to implement
+
+how to splice out classes
+how to implement the virtual struct as the link between classes
+
+---
+less inheretance but more template
+
+---
+c++ 20 concept
+
+what are c++ versions difference
+
+----------------------------------------------------------------------------------------
+
+Second round 
+
+data put into struct
+
+when declaring a object attribute be public means want anyone to get access it,
+and never want it to be modified anymore
+
+c++ 98
+c++ 03 value initialization
+c++ 17 new ways to assign value to variable ex :a = (3), a = {3,15}
+c++ 11 smart pointer, rvalue reference and move semantics
+       range-based for loop, initializer list, lambda,
+c++ 14 return type deduction, 
+
+---
+design patterns:
+    programming to interface ( product user guide )
+    like creating a new car but remain the same use for everyone, 
+    instead of asking everyone to relearn
+
+    builder patter:
+        Problem : too complicated way of construction
+        ex string builder <<----- it's much faster instead of growing while storing temporary data
+        solve original too complicatied way of construction (function)
+---
+    factory pattern:
+        Problem : many ways of construction
+        make different ways of constructor be static functions
+        then make the original constructor private (make it not really confusing)
+        make interface monotonical
+        ex Point(3,4)               1
+           Point.Cartesian(3,4)     2  
+           Point.Polar(5,6)         3             ---> 1 2 are the same but user may be confused
+
+---
+    Prototype pattern:
+        Problem: many duplicated /similar objects
+        Predefine default Prototype
+        usually obejct generate object
+        dupclicate-prototype-construction
+        usually used in dynamic language like JS
+---
+    static function : can be called by class
+    static variable : it's global variable
+---
+    Singleton pattern:
+        global variable, only one in the whole system
+        make that staff in the whole system cannot be copied or be constructed any more
+        use himself to construct
+        But this generate another issue : when to initialize global variable is unclear
+        sort of decision
+---
+    Adaptor pattern:
+        specify specific usages, like changing template 
+        like use vector to implement stack
+---
+    Composite patter:
+        Means the relationship between classes is like a tree
+        recently, we tend to inhererit a interface (not be implemented) istead of a class
+        to prevent copying, or inhereriting too many classes
+---
+    Flyweight pattern:
+        to solve duplicated data in a class like string (be only read in python), 
+        now we usually use attribute 
+        create a dictionary
+        store data in a static vector using index to call
+        implement by template by defining function
+---
+    Proxy pattern:
+        usually in web dev, create an object don't have to manipulate the one on the cloud
+        usually try to 
+        itemphase his probld
+        first create empty list, store data after we read data
+--- 
+    Decorator pattern:
+        function running is like one capsulate by one
+        no need to change original interface when encounter a new shape or sth
+---
+    chain or responsiility pattern:
+        make it able to be rearrange easily
+---
+    iterator pattern:
+        sometimes you dont have serial data,
+        if using array it's stupid to implement an iterator
+        or if you want to specify the direction of data flow
+---
+    command pattern:
+        when encounter a txt file, setup file, json
+        you dont know the command beforehand
+        make a dynamical input, make a mapping
+        a string map to a command
+        usually you can implement a easy undo
+        command dont want to store too much stuff
+---
+    momento pattern:  (serialization)
+        save snapshots
+        implement save and read
+        usually json for now or XML in the old days
+---
+    observer pattern:
+        like Event 
+        if we add sth, we wnat do logger, checkOverflow... too many things to check at the same tiem
+        need to reverse dependency
+        create a Event and let logger checkOverflow to subscribe to it
+        then call these while action
+---
+    strategy model:
+        usually ask for customizing
+        ex sorting but one of the input arguments can be a function
+---
+    state machine:
+        logic too complicated and need to relie on state transition
+---
+    visitor patter:
+        double edge sword
+        double dispatch : input args will use their own type to call its corresponding function
+---
+golden words:
+    don't too optimize at early phase,
+    overcome problem when encountering
+    if a class accounts for too many tasks, try to seperate them out
+    use static means you don't have to create object but you can call
+    !!!!!!!!!!!try to write static anytime!!!!!!!!!!!!!!!
+---------------------------------------------------
+Q: what is enum class?
+   template?
+   function const  or const = 0 ?  means you don't implement??
+   friend class?
+   const vs const_expr
+   extern int vs extern
+   make_unique ? make_shared ?
+----
+
+Third round
+
+
+

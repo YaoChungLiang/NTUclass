@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript 購物車</title>
+    <!-- bootstrap.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- style.css -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">JavaScript 購物車</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="cartNavLink" class="nav-link" href="#cartModal" data-toggle="modal">購物車</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- navbar end -->
+    <!-- header -->
+    <div id="header" class="jumbotron">
+        <div class="container">
+            <h1>JavaScript 購物車</h1>
+            <p>使用HTML5 LocalStorage API製作購物車</p>
+        </div>
+    </div>
+    <!-- header end -->
+    <!-- productSection -->
+    <section id="productSection" class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-5">產品列表</h1>
+            <!--- list of products--->
+            <div id="productRow" class="row"></div>
+        </div>
+    </section>
+    <!-- productSection end -->
+    <!-- modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">購物車</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th>產品名稱</th>
+                                <th class="text-right">單價</th>
+                                <th class="text-right">數量</th>
+                                <th class="text-right">總計</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartTableBody"></tbody>
+                        <tfoot id="cartTableFoot"></tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="clearCartBtn" type="button" class="btn btn-danger">清空購物車</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <!-- jquery.js help us to control components on the screen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- bootstrap.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- products.js -->
+    <script src="./js/products.js"></script>
+    <!-- cart.js -->
+    <script src="./js/cart.js"></script>
+</body>
+
+</html>

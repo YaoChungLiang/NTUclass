@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>成績計算機</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form class="bg-white" id="scoreForm">
+                    <h3>成績計算機</h3>
+                    <div class="form-group">
+                        <label for="chineseScoreInput">國文成績</label>
+                        <input id="chineseScoreInput" type="number" min="0" max="100" placeholder="請在此輸入您的國文成績 0 ~ 100 "
+                            class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="englishScoreInput">英文成績</label>
+                        <input id="englishScoreInput" type="number" min="0" max="100" placeholder="請在此輸入您的英文成績 0 ~ 100 "
+                            class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mathScoreInput">數學成績</label>
+                        <input id="mathScoreInput" type="number" min="0" max="100" placeholder="請在此輸入您的數學成績 0 ~ 100 "
+                            class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">計算GPA</button>
+                    </div>
+                    <p><small>平均分數大於或等於90分為A+，平均分數大於或等於80分為A，平均分數大於或等於70分為B，平均分數大於或等於60分為C，平均分數低於60為F。</small></p>
+                    <div id="result"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- main.js -->
+    <script src="./main.js"></script>
+    <script src='./object.js'></script>
+</body>
+
+</html>

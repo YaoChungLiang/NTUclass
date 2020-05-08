@@ -1,0 +1,37 @@
+Focus on front
+---front--
+JavaScript
+jquery
+HTML5 API ( using JS )
+Localstorage (store game process on local machine)
+Google Firebase API
+
+--back--
+Node.js & Express
+NPM (package management)
+EJS (model template)
+--------
+
+3 major in frontend
+HTML CSS JS
+
+
+-----
+usually script tag in the bottom of body or head
+JS is for controlling local machine window
+
+JAVAScript  <------ ECMAScript
+
+Node.js can control server not only the front end
+----
+
+document means whole page
+
+1.
+input change to string automatically
+2.
+preventDefault looks tricky
+3.
+how long does it take to retrieve user data
+4.
+
