@@ -35,3 +35,12 @@ class Point{
         return "("+x+","+y+")";
     }
 }
+
+ex void goFly(Object o){
+    if o instance of Bird{
+        ((Bird) o).fly();
+    }
+    else if o instance of Airplane{
+        ((AiirPlane) o).fly();
+    }
+}
