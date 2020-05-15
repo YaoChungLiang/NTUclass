@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../shared/head %>
+</head>
+
+<body>
+    <% include ../shared/navbar %>
+    <header id="editHeader" class="jumbotron header">
+        <div class="container">
+            <h1>更新商品</h1>
+        </div>
+    </header>
+    <section class="py-3">
+        <form id="editProductForm" class="container">
+            <div class="form-group">
+                <label for="productName">商品名稱</label>
+                <input type="text" id="productName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">商品價格</label>
+                <input type="number" id="productPrice" class="form-control" min="1" max="20000" required>
+            </div>
+            <div class="form-group">
+                <label for="productImage">商品圖片</label>
+                <input type="text" id="productImage" class="form-control" value="https://picsum.photos/id/1070/1200/600"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="productCategory">商品分類</label>
+                <select id="productCategory" class="form-control">
+                    <option value="食品">食品</option>
+                    <option value="生活用品">生活用品</option>
+                    <option value="文具">文具</option>
+                    <option value="清潔用品">清潔用品</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> 更新商品</button>
+                <button id="deleteProductBtn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i>
+                    刪除商品</button>
+            </div>
+        </form>
+    </section>
+    <% include ../shared/scripts %>
+    <script>
+        // 更新商品表單送出時
+        $('#editProductForm').submit(function (event) {
+            event.preventDefault();
+            const product = {
+                name: $('#productName').val(),
+                price: parseInt($('#productPrice').val()),
+                image: $('#productImage').val(),
+                category: $('#productCategory').val(),
+            }
+            console.log('[更新產品]', product);
+            // TODO: 呼叫更新商品API
+        });
+
+        // 刪除商品按鈕按下時
+        $('#deleteProductBtn').click(function (event) {
+            console.log('[刪除商品]');
+            // TODO: 呼叫刪除商品API
+        });
+    </script>
+</body>
+
+</html>

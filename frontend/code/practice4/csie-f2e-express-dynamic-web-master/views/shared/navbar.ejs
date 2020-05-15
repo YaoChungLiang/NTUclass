@@ -1,0 +1,88 @@
+<!-- navbar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">My Website</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" href="#signUpModal">註冊</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" href="#loginModal">登入</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api-demo">API串接示範</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product/create">建立商品</a>
+            </li>
+            <li class="nav-item">
+                <a id="logoutBtn" class="nav-link">登出</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- navbar end -->
+
+<!-- signUpModal -->
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="signUpForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">註冊</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="signUpEmail">Email</label>
+                    <input type="email" id="signUpEmail" class="form-control" placeholder="請輸入您的Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signUpPassword">密碼</label>
+                    <input type="password" id="signUpPassword" class="form-control" placeholder="請輸入您的密碼" minlength="6"
+                        required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">註冊</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- signUpModal -->
+
+<!-- loginModal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="loginForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="請輸入您的Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密碼</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="請輸入您的密碼" minlength="6"
+                        required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">登入</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- loginModal -->
