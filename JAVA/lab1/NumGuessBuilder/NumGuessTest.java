@@ -6,10 +6,10 @@ public class NumGuessTest{
     public static void main(String[] args){
         boolean humanRes, randomRes, binaryRes;
         int binRes = 0, randRes = 0;
-        // lab 1-1
+        // lab 1-1 human search a
         NGBuilder HumanSearch = new NGBuilder().setStrategy("human");
         humanRes = HumanSearch.NumGuess();  
-        // lab 1-2
+        // lab 1-2 search algo without iteration limit
         NGBuilder RandomSearch = new NGBuilder().setStrategy("random");
         NGBuilder BinarySearch = new NGBuilder().setStrategy("binary");
         int total = (int) 1e5;
@@ -23,7 +23,7 @@ public class NumGuessTest{
         }
         System.out.printf("winning rate of binary search = %f\n",(double) binRes/total);
         System.out.printf("winning rate of random search  = %f\n",(double) randRes/total);
-        // lab 1-3 
+        // lab 1-3 search algo with max Iteration
         int maxIter = 7;
         NGBuilder RandomSearchIter = new NGBuilder().setStrategy("random").setIter(maxIter);
         NGBuilder BinarySearchIter = new NGBuilder().setStrategy("binary").setIter(maxIter);
@@ -35,18 +35,13 @@ public class NumGuessTest{
             }
             if(BinarySearchIter.NumGuess()){
                 binRes += 1;
-            }
-            
+            }      
         }
         System.out.printf("winning rate of binary search with iteration of %d = %f\n", maxIter ,(double) binRes/total);
         System.out.printf("winning rate of random search with iteration of %d = %f\n", maxIter ,(double) randRes/total);
     }
 }
 
-
-enum Strategy{
-    human, binary, random
-}
 
 class NGBuilder{
     private int iter;
@@ -57,8 +52,8 @@ class NGBuilder{
         return this;
     }
 
-    public NGBuilder setStrategy(String stra){
-        this.strategy = stra;
+    public NGBuilder setStrategy(String strategy){
+        this.strategy = strategy;
         return this;
     }
 
@@ -71,8 +66,6 @@ class NGBuilder{
         boolean res = true;
         Scanner input = new Scanner(System.in);
         int iter = this.iter;
-        //String strategy = this.strategy;
-        //System.out.printf("res= %d\n", sol);
         
         while(guess != sol){
             if (iter != 0){
