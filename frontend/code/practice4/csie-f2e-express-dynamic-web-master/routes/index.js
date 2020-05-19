@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db');
 
 // 首頁路由
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   // TODO: 取得產品列表
+  const collection = await db.collection('product-list').orderBy('createdAt','desc').get()
+  //.then()
+  //.catch(err => console.log(err));
+  const productList = [];
+  //console.log('[collection]', collection)
+  collection.forEach(doc => {
+    const product = doc.data();
+    product.id = doc.id;
+    console.log(product);
+    productList.push(product);
+
+  })
+  res.locals.productList = productList;
   // by views/index.ejs 's template to generate html's response to user
   res.render('index');
 });

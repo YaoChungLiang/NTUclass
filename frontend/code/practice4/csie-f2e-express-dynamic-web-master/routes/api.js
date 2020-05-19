@@ -2,6 +2,8 @@ const express = require('express');
 const moment = require('moment');
 const axios = require('axios');
 const router = express.Router();
+// add db
+const db = require('../db');
 
 // TODO: 開出一個API回應前端傳來的內容
 
@@ -74,6 +76,17 @@ router.post('/product/create', function (req, res, next) {
     const product = req.body;
     console.log('[new product]', product);
     // response to frontend that successfully
+    // add frontend data to remote backend database
+    // only send object {} to firebase 
+    db
+        .collection('product-list')
+        .add(product)
+        .then( () => {
+            res.status(200).json({msg:'Done'});
+        })
+        .catch(err =>{
+            res.status(500).json(err);
+        });
     res.status(200).json({msg: 'OK'});
     
 });

@@ -18,7 +18,19 @@
     <div class="container">
       <h1>商品列表</h1>
       <div class="row">
-
+        <% productList.forEach(product => { %>
+          <div class="col-md-4">
+            <div class="card"> 
+              <img class="card-img-top" src="<% product.img %>" alt="">
+              <div class="card-body">
+                <h4 class="card-title"><%= product.name %></h4>
+                <span class="badge badge-info"><%= product.category%></span>
+                <p class="card-text"><%= product.name %></p>
+                <a href="/product/edit/<%= product.id %>" class="btn btn-primary"> modify products </a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
       </div>
     </div>
   </section>
