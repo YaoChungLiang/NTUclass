@@ -7,34 +7,36 @@
 
 <body>
     <% include ../shared/navbar %>
-    <header id="editHeader" class="jumbotron header">
+    <header style="background-image: url(<%= product.iamge %>);" id="editHeader" class="jumbotron header">
         <div class="container">
-            <h1>更新商品</h1>
+            <h1>更新<%= product.name %></h1>
         </div>
     </header>
     <section class="py-3">
         <form id="editProductForm" class="container">
             <div class="form-group">
                 <label for="productName">商品名稱</label>
-                <input type="text" id="productName" class="form-control" required>
+                <input type="text" id="productName" class="form-control" value = "<%= product.name %>" required>
             </div>
             <div class="form-group">
                 <label for="productPrice">商品價格</label>
-                <input type="number" id="productPrice" class="form-control" min="1" max="20000" required>
+                <input type="number" id="productPrice" class="form-control" min="1" max="20000000" value= "<%= product.price %>" required>
             </div>
             <div class="form-group">
                 <label for="productImage">商品圖片</label>
-                <input type="text" id="productImage" class="form-control" value="https://picsum.photos/id/1070/1200/600"
-                    required>
+                <input type="text" id="productImage" class="form-control" value="<%= product.image %>" required>
             </div>
             <div class="form-group">
                 <label for="productCategory">商品分類</label>
                 <select id="productCategory" class="form-control">
-                    <option value="食品">食品</option>
-                    <option value="生活用品">生活用品</option>
-                    <option value="文具">文具</option>
-                    <option value="清潔用品">清潔用品</option>
-                    <option value="其他">其他</option>
+                    <% const optionList = ['食品','生活用品','文具','清潔用品','其他']; %>
+                    <% optionList.forEach(opt => { %>
+                    <% if (opt == product.category ){ %>
+                        <option value="<%= opt %>" selected > <%= opt %> </option>
+                    <% } else{ %>
+                        <option value="<%= opt %>" > <%= opt %> </option>
+                    <% } %>
+                    <% }); %>
                 </select>
             </div>
             <div class="form-group">
@@ -46,6 +48,9 @@
     </section>
     <% include ../shared/scripts %>
     <script>
+        // get id
+        const pid = '<%= product.id %>';
+
         // 更新商品表單送出時
         $('#editProductForm').submit(function (event) {
             event.preventDefault();
@@ -57,12 +62,34 @@
             }
             console.log('[更新產品]', product);
             // TODO: 呼叫更新商品API
+            axios
+            .put(`/api/product/${pid}`, product)
+            .then(res =>{
+                // redirect back to homepage
+                alert(`[ update succedssfully]`)
+
+                window.location = `/`;
+            })
+            .catch(err => {
+                alert(`update failed`);
+                console.log(err);
+            });
         });
 
         // 刪除商品按鈕按下時
         $('#deleteProductBtn').click(function (event) {
             console.log('[刪除商品]');
             // TODO: 呼叫刪除商品API
+            axios.delete(`/api/product/${pid}`, {})
+            .then(res =>{
+                // redirect back to homepage
+                alert(`[ delete succedssfully]`)
+                window.location = `/`;
+            })
+            .catch(err => {
+                alert(`delete failed`);
+                console.log(err);
+            });
         });
     </script>
 </body>

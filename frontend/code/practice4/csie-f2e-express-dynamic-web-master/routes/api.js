@@ -93,11 +93,39 @@ router.post('/product/create', function (req, res, next) {
 
 // 更新商品
 router.put('/product/:pid', function (req, res, next) {
-
+    const pid = req.params.pid;
+    // use req.body can get the object from the frontend
+    const product = req.body; 
+    /*
+        get : doc() / collection().get while retrieve from the backend
+        add : collection().add()
+        update : doc().update()
+        remove : doc().delete()
+    */
+    db
+        .doc(`product-list/${pid}`)
+        .update(product)
+        .then( () =>{
+            res.status(200).json({msg: 'update success'});
+        })
+        .catch(err =>{
+            res.status(500).json(err);
+        })
 });
 
 // 刪除商品
 router.delete('/product/:pid', function (req, res, next) {
+    const pid = req.params.pid;
+    // use req.body can get the object from the frontend
+    db
+        .doc(`product-list/${pid}`)
+        .delete()
+        .then(() =>{
+            res.status(200).json({msg:'update success'})
+        })
+        .catch(err =>{
+            res.status(500).json(err);
+        })
 
 });
 

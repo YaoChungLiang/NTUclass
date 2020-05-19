@@ -13,6 +13,21 @@ $('#loginForm').submit(function (event) {
     console.log('[開始登入]', { email: email, password: password });
     // TODO: 處理登入流程
     // https://firebase.google.com/docs/auth/web/start#sign_in_existing_users
+    firebase
+    .auth().signInWithEmailAndPassword(email , password)
+    .then(res =>{
+        console.log('[ sign in successfully ]', res);
+        // get idToken
+        res.user
+            .getIdToken()
+            .then(idToken => {
+                console.log('[id Token]', idToken);
+            })
+    })
+    .catch(err =>{
+        console.log('[ sign in fail ]', err);
+        alert(err.message);
+    });
 
 });
 

@@ -10,15 +10,24 @@
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
 
 <script>
     // Firebase設定
     const firebaseConfig = {
         // TODO: 替換成你的Firebase專案設定
-
+        apiKey: "AIzaSyA2za9wgAaCc0dEvjh6sJRsm1xAubZHkEQ",
+        authDomain: "shoppingcart-ac0a2.firebaseapp.com",
+        databaseURL: "https://shoppingcart-ac0a2.firebaseio.com",
+        projectId: "shoppingcart-ac0a2",
+        storageBucket: "shoppingcart-ac0a2.appspot.com",
+        messagingSenderId: "196505797738",
+        appId: "1:196505797738:web:d9fda3c7540b7a45627613",
+        measurementId: "G-WWR1D4HJQH"
     };
     // 初始化Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 </script>
 
 <script src="/assets/js/main.js"></script>
