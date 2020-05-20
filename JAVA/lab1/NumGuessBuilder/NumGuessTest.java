@@ -8,6 +8,8 @@ public class NumGuessTest{
         int binRes = 0, randRes = 0;
         // lab 1-1 human search a
         NGBuilder HumanSearch = new NGBuilder().setStrategy("human");
+        if(args.length == 3 || args.length == 2)
+            HumanSearch.setBounds(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         humanRes = HumanSearch.NumGuess();  
         // lab 1-2 search algo without iteration limit
         NGBuilder RandomSearch = new NGBuilder().setStrategy("random");
@@ -25,8 +27,14 @@ public class NumGuessTest{
         System.out.printf("winning rate of random search  = %f\n",(double) randRes/total);
         // lab 1-3 search algo with max Iteration
         int maxIter = 7;
+        if(args.length == 3)
+            maxIter = Integer.parseInt(args[2]);
         NGBuilder RandomSearchIter = new NGBuilder().setStrategy("random").setIter(maxIter);
         NGBuilder BinarySearchIter = new NGBuilder().setStrategy("binary").setIter(maxIter);
+        if(args.length == 3 || args.length == 2){
+            RandomSearchIter.setBounds(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+            BinarySearchIter.setBounds(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        }
         randRes = 0;
         binRes = 0;
         for(int i = 0; i< total ; i++){
@@ -46,7 +54,9 @@ public class NumGuessTest{
 class NGBuilder{
     private int iter;
     private String strategy;
-    
+    int lowBound;
+    int upBound;
+
     public NGBuilder setIter(int iter){
         this.iter = iter;
         return this;
@@ -57,12 +67,23 @@ class NGBuilder{
         return this;
     }
 
+    public NGBuilder setBounds(int low, int up){
+        this.lowBound = low;
+        this.upBound = up;
+        return this;
+    }
+
     public boolean NumGuess(){
         Random rand = new Random();
-        int upperBound = 101;
-        int sol = rand.nextInt(101);
-        int lowerBound = 0;
-        int guess = 101;
+        int upperBound = (this.upBound != 0 ? upBound+1 : 100);
+        int sol = rand.nextInt(upperBound+1);
+        int lowerBound = (this.lowBound != 0 ? lowBound : 0);
+        
+        if(upperBound < lowerBound+2){
+            System.out.println("Invalid Bound values : UpperBound is equal to lowerBound");
+            System.exit(0);
+        }
+        int guess = upperBound;
         boolean res = true;
         Scanner input = new Scanner(System.in);
         int iter = this.iter;
