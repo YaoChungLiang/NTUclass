@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+// reference login checker (not a guard,everyone can pass)
+const loginChecker = require('../middleware/login-checker')
+
+// before entering routers below
+loginChecker(router); 
+
 
 // 首頁路由
 router.get('/', async function (req, res, next) {

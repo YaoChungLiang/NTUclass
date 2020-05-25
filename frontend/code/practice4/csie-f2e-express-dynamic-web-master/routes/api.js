@@ -5,6 +5,8 @@ const router = express.Router();
 // add db
 const db = require('../db');
 
+const admin = require('../firebase');
+
 // TODO: 開出一個API回應前端傳來的內容
 
 // 取得伺服器正確與錯誤訊息範例
@@ -56,13 +58,54 @@ router.post('/time/format', function (req, res, next) {
 });
 
 // 登入
-router.post('/login', function (req, res, next) {
+router.post('/login', async function (req, res, next) {
+    // get idToken
+    const idToken = req.body.idToken;
+    // get cookieName
+    const cookieName = req.app.locals.cookieName;
+    console.log('[idToken]', idToken);
+    console.log('[cookieName]', cookieName);
+    //setup expiration date
+    const expiresIn = 60*60*24*5*1000;
 
+    // get sessionCookie
+    const sessionCookie = await admin.auth().createSessionCookie(idToken, {expiresIn});
+    //console.log('[sessionCookier]', sessionCookie);
+
+    console.log('[sessionCookie]', sessionCookie);
+    //cookie config
+    const option = {
+        maxAge : expiresIn,
+        httpOnly : true,
+       // secure : true // cannot be testing on local machine
+    }
+    // wrote a cookie to the browser
+    res.cookie(cookieName, sessionCookie, option);
+    // inform the frontend that all successful
+    res.status(200).json({msg: 'Login successfully!!!'});
 });
 
 // 登出
 router.post('/logout', function (req, res, next) {
-
+    // get cookieName and sessionCookie
+    const cookieName = req.app.locals.cookieName, 
+        sessionCookie = req.cookies[cookieName] || '';
+    // clear cookie from browser
+    res.clearCookie(cookieName);
+    // by sessionCookie get user
+    admin
+        .auth()
+        .verifySessionCookie(sessionCookie)
+        .then(async user =>{
+            const uid = user.uid;
+            // let firebase auth delete the user's sessionCookie
+            await admin.auth().revokeRefreshTokens(uid)
+            res.status(200).json({msg : 'OK'})
+        })
+        .catch(err =>{
+            
+            res.status(200).json({msg : 'OK'})
+        })
 });
 
 // 取得商品列表

@@ -15,6 +15,10 @@ const productRouter = require('./routes/product');
 // 設定應用程式
 const app = express();
 
+//set global variables
+app.locals.cookieName = 'exampleCookie';
+// you can get this variable in router by typing req.app.locals.cookieName
+
 // 定義視圖引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

@@ -7,25 +7,35 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto">
+            <% if (!auth.isLogin){ %>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#signUpModal">註冊</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#loginModal">登入</a>
             </li>
+            <% } %>
             <li class="nav-item">
                 <a class="nav-link" href="/api-demo">API串接示範</a>
             </li>
+            <% if(auth.isAdmin) {%>
             <li class="nav-item">
                 <a class="nav-link" href="/product/create">建立商品</a>
+            </li>
+            <% } %>
+            <% if(auth.isLogin) {%>
+            <li class = "nav-item">
+                <a class="nav-link"> <%= auth.user.email%></a>
             </li>
             <li class="nav-item">
                 <a id="logoutBtn" class="nav-link">登出</a>
             </li>
+            <% } %>
         </ul>
     </div>
 </nav>
 <!-- navbar end -->
+<%= JSON.stringify(auth) %>
 
 <!-- signUpModal -->
 <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
