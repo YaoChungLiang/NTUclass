@@ -4,32 +4,34 @@ public class CompareSortAlgos{
         Random random = new Random();
         int[] array;
         int[] sz = {1000,2000,4000,8000, 16000,32000, 64000};
-        long St, Time;
+        double St, arrayTime, bubbleTime, insertTime, selectTime ;
+        System.out.println("Simulating Arrays.sort: .........done");
+        System.out.println("Simulating Insertion sort: .........done");
+        System.out.println("Simulating Selection sort: .........done");
+        System.out.println("Simulating Bubble sort: .........done");
+        System.out.println("Benchmark(time units : ms)");
+        System.out.printf("%5s%14s%17s%16s%12s\n","Size","Bubble sort","Selection sort","Insertion sort","Arrays.sort");
         for(int i = 0;i< sz.length;i++){
             array = random.ints(sz[i],10,sz[i]).toArray();
+
+            St = System.currentTimeMillis();
+            Arrays.sort(array);
+            arrayTime = System.currentTimeMillis() - St;
+
             St = System.currentTimeMillis();
             BubbleSort(array);
-            Time = System.currentTimeMillis() - St;
-            System.out.println("bubble");
-            System.out.println(Time);
+            bubbleTime = System.currentTimeMillis() - St;
 
             St = System.currentTimeMillis();
             SelectSort(array);
-            Time = System.currentTimeMillis() - St;
-            System.out.println("select");
-            System.out.println(Time);
+            selectTime = System.currentTimeMillis() - St;
 
             St = System.currentTimeMillis();
             InsertSort(array);
-            Time = System.currentTimeMillis() - St;
-            System.out.println("insert");
-            System.out.println(Time);
-            
-            St = System.currentTimeMillis();
-            Arrays.sort(array);
-            Time = System.currentTimeMillis() - St;
-            System.out.println("ArraySortAPI");
-            System.out.println(Time);
+            insertTime = System.currentTimeMillis() - St;
+
+            System.out.printf("%5d%14.3f%17.3f%16.3f%12.3f\n",sz[i], bubbleTime,  selectTime, insertTime, arrayTime);
+
         }
         
     }
